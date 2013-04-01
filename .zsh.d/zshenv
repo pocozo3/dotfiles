@@ -1,0 +1,81 @@
+################################################################################
+#
+# zshenv 各環境共通設定
+#     ~/.zsh.d/zshenv
+#     対話的・非対話的実行時共通の設定
+#
+################################################################################
+
+# ================================================
+#  パスの設定
+# ================================================
+# コマンドパスの設定
+## 重複したパスを登録しない。
+typeset -U path
+## (N-/): 存在しないディレクトリは登録しない。
+path=(/usr/local/bin(N-/)
+      /usr/bin(N-/)
+      /bin(N-/)
+      $PATH)
+
+# man用パスの設定
+## 重複したパスを登録しない。
+typeset -U manpath
+## (N-/): 存在しないディレクトリは登録しない。
+manpath=(/usr/local/man(N-/)
+         /usr/local/share/man(N-/)
+         /usr/share/man(N-/)
+         /usr/man(N-/)
+         $MANPATH)
+
+# ================================================
+#  リモートコマンドの設定 (エイリアス・環境変数)
+# ================================================
+# ページャの設定
+if type lv > /dev/null 2>&1; then
+    ## lvを優先する。
+    export PAGER="lv"
+else
+    ## lvがなかったらlessを使う。
+    export PAGER="less"
+fi
+
+# lvの設定
+## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
+## -l: 1行が長くと折り返されていても1行として扱う。
+##     （コピーしたときに余計な改行を入れない。）
+export LV="-c -l"
+if [ "$PAGER" != "lv" ]; then
+    ## lvがなくてもlvでページャーを起動する。
+    alias lv="$PAGER"
+fi
+
+# grepの設定
+## grepのバージョンを検出。
+grep_version="$(grep --version | head -n 1 | sed -e 's/^[^0-9.]*\([0-9.]*\)[^0-9.]*$/\1/')"
+## デフォルトオプションの設定
+export GREP_OPTIONS
+### バイナリファイルにはマッチさせない。
+GREP_OPTIONS="--binary-files=without-match"
+case "$grep_version" in
+    1.*|2.[0-4].*|2.5.[0-3])
+	;;
+    *)
+	### grep 2.5.4以降のみの設定
+        ### grep対象としてディレクトリを指定したらディレクトリ内を再帰的にgrepする。
+	GREP_OPTIONS="--directories=recurse $GREP_OPTIONS"
+	;;
+esac
+### 拡張子が.tmpのファイルは無視する。
+GREP_OPTIONS="--exclude=\*.tmp $GREP_OPTIONS"
+## 管理用ディレクトリを無視する。
+if grep --help 2>&1 | grep -q -- --exclude-dir; then
+    GREP_OPTIONS="--exclude-dir=.svn $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.git $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.deps $GREP_OPTIONS"
+    GREP_OPTIONS="--exclude-dir=.libs $GREP_OPTIONS"
+fi
+### 可能なら色を付ける。
+if grep --help 2>&1 | grep -q -- --color; then
+    GREP_OPTIONS="--color=auto $GREP_OPTIONS"
+fi

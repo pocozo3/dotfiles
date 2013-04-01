@@ -1,0 +1,21 @@
+# 全てのファイルを対象から削除
+*
+.*
+*~
+
+# Git で管理するファイル/ディレクトリのリスト
+!.tmux.d/
+!.vim/
+!.zsh.d/
+!.gitignore
+!/.fbtermrc
+!/.fonts.conf
+!/.tmux.conf
+!/.vimrc
+!/.zlogout
+!/.zshenv
+!/.zshrc
+!/setup.sh
+!/README.md
+
+# Git で管理しないファイル/ディレクトリのリスト
