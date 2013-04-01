@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .zsh.d .zlogout .zshenv .zshrc .emacs.d .fbtermrc .fonts.conf .tmux.conf .tmux.d)
+DOT_FILES=( .zsh.d .zlogout .zshenv .zshrc .vim .vimrc .fbtermrc .fonts.conf .tmux.conf .tmux.d)
 
 CMDNAME=`basename $0`
 if [ $# -ne 2 ]; then
