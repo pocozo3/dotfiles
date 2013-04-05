@@ -9,16 +9,12 @@
 # ================================================
 #  環境変数の設定
 # ================================================
-## emacs 関係
-export ALTERNATE_EDITOR=/usr/bin/emacs
 
 # ================================================
 #  エイリアスの設定
 # ================================================
-## emacs 関係
-alias emd='/usr/bin/emacs --daemon'
-alias emc='/usr/bin/emacsclient -t'
-alias emk="/usr/bin/emacsclient -e '(progn (defun yes-or-no-p (p) t) (kill-emacs))'"
+## vi/vim 関係
+alias vi='vim'
 
 ## sudo でエイリアスを扱うための設定
 alias sudo='sudo '
