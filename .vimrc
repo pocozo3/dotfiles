@@ -19,7 +19,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'altercation/vim-colors-solarized'
 
 " Powerline
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Lokaltog/powerline'
 
 " ファイル名と内容によってファイルタイプを判別し、
 " ファイルタイププラグインを有効にする
