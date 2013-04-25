@@ -12,9 +12,6 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-" 非同期処理
-NeoBundle 'Shougo/vimproc'
-
 " Vim Color Solarized
 NeoBundle 'altercation/vim-colors-solarized'
 
