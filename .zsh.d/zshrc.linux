@@ -6,11 +6,10 @@
 #
 ################################################################################
 
-# terminal の種類によって色の変更などを行う
+# terminal の種類によって言語の設定を行う
 case $TERM in
     linux*)
-        alias tmux='TERM=fbterm tmux -2'
-        fbterm
+        export LANG=C
         ;;
     *)
         ;;
