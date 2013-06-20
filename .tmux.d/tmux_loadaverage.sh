@@ -28,11 +28,9 @@ sub_color_select() {
 ## ロードアベレージ取得
 get_load_average() {
     # 数値取得
-    COM_UPTIME=$(/usr/bin/uptime)
-
-    UPTIME_1M=$(echo "$COM_UPTIME" | /usr/bin/awk -F, '{print $3 $4 $5}' | /usr/bin/cut -f 5 -d " ")
-    UPTIME_5M=$(echo "$COM_UPTIME" | /usr/bin/awk -F, '{print $3 $4 $5}' | /usr/bin/cut -f 6 -d " ")
-    UPTIME_15M=$(echo "$COM_UPTIME" | /usr/bin/awk -F, '{print $3 $4 $5}' | /usr/bin/cut -f 7 -d " ")
+    UPTIME_1M=$(cut -f1 -d' ' < /proc/loadavg)
+    UPTIME_5M=$(cut -f2 -d' ' < /proc/loadavg)
+    UPTIME_15M=$(cut -f3 -d' ' < /proc/loadavg)
 
     # average >= core で色を変える
     TMUX_COL_1M=`sub_color_select $UPTIME_1M`
