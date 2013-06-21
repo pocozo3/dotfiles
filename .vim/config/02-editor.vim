@@ -15,11 +15,15 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Indent インデント設定
 "-------------------------------------------------
 
-" 新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする
-set autoindent
+" 新しい行を開始したときに、新しい行のインデントを現在行と同じ量にする(有効:expandtab/無効:noexpandtab)
+"set autoindent
+set noautoindent
 
 " 新しい行を作ったときに高度な自動インデントを行う
-set smartindent
+"set smartindent
+set nosmartindent
+"set cindent
+set nocindent
 
 " <Tab> が対応する空白の数。
 set tabstop=4
@@ -30,9 +34,9 @@ set softtabstop=4
 " インデントの各段階に使われる空白の数
 set shiftwidth=4
 
-" Insertモードで <Tab> を挿入するとき、代わりに適切な数の空白を使う。（有効:expandtab/無効:noexpandtab）
-"set noexpandtab
+" Insertモードで <Tab> を挿入するとき、代わりに適切な数の空白を使う(有効:expandtab/無効:noexpandtab)
 set expandtab
+"set noexpandtab
 
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
