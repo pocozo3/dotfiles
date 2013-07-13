@@ -15,7 +15,7 @@ calc_mem_usage() {
     # 数値取得
     COM_FREE=$(/usr/bin/free)
 
-    MEM_USED=$(echo "$COM_FREE" | /usr/bin/awk '/Mem:/ {print $3}')
+    MEM_USED=$(echo "$COM_FREE" | /usr/bin/awk '/-\/+/ {print $3}')
     MEM_TOTAL=$(echo "$COM_FREE" | /usr/bin/awk '/Mem:/ {print $2}')
     SWAP_USED=$(echo "$COM_FREE" | /usr/bin/awk '/Swap:/ {print $3}')
     SWAP_TOTAL=$(echo "$COM_FREE" | /usr/bin/awk '/Swap:/ {print $2}')
