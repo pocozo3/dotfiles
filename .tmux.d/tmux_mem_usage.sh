@@ -26,8 +26,9 @@ calc_mem_usage() {
     # 使用中スワップ(%)
     SWAP_USED_PERCENT=$(echo "$((($SWAP_USED) * 1000 / ($SWAP_TOTAL)))" | /bin/sed -e 's/\(.*\)\([0-9]\)/\1.\2/' -e 's/^\./0./')
 
-    # スワップの有無で色を変える
-    if [ 0 -eq $SWAP_USED ] ; then
+    # スワップが 30% を超えたら色を変える
+    EXAM=`echo "30 > $SWAP_USED_PERCENT" | bc`
+    if [ $EXAM -eq 1 ] ; then
         TMUX_COLOR=$TMUX_COLOR_NORMAL
       else
         TMUX_COLOR=$TMUX_COLOR_SWAP
