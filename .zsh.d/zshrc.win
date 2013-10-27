@@ -11,7 +11,7 @@
 # ================================================
 # .rvenvディレクトリがあるときだけ設定を追加
 if [ -d ${HOME}/.rbenv  ] ; then
-    PATH=${HOME}/.rbenv/bin:${PATH}
+    PATH=${HOME}/.rbenv/bin:${HOME}/.rbenv/versions/2.0.0-p247/bin:${PATH}
     export PATH
     eval "$(rbenv init -)"
 fi
