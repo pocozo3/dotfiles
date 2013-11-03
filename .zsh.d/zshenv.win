@@ -30,10 +30,3 @@ export TZ=JST-9
 # ================================================
 ## エディタの設定
 alias vi='vim'
-
-## Rubyの設定
-alias gem='D:/Ruby/bin/gem'
-alias sass='D:/Ruby/bin/sass'
-alias sass-convert='D:/Ruby/bin/sass-convert'
-alias scss='D:/Ruby/bin/scss'
-alias compass='D:/Ruby/bin/compass'
